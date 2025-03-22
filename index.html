@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Childe | 个人主页</title>
+    <link rel="icon" href="bitbug_favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(90deg, #4f46e5 0%, #9333ea 50%, #ec4899 100%);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 custom-cursor">
+    <!-- 滚动进度条 -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 z-50 p-4 bg-purple-600 text-white rounded-full shadow-lg transform scale-0 transition-transform duration-300 hover-rotate pulse-effect">
+        <i class="fas fa-rocket"></i>
+    </button>
+    
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden h-screen">
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/1920/1080?random=1" alt="Background" class="w-full h-full object-cover filter brightness-50">
+        </div>
+        <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
+        
+        <nav class="relative z-20 container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-white text-2xl font-bold">Childe</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-white hover:text-purple-300 transition">关于我</a>
+                <a href="#projects" class="text-white hover:text-purple-300 transition">作品</a>
+                <a href="#facts" class="text-white hover:text-purple-300 transition">宇宙真相</a>
+                <a href="#contact" class="text-white hover:text-purple-300 transition">联系我</a>
+            </div>
+            <button class="md:hidden text-white text-xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <div class="hidden absolute top-16 right-0 left-0 bg-gray-900 bg-opacity-90 z-20 text-center py-4" id="mobile-menu">
+            <a href="#about" class="block py-2 text-white hover:text-purple-300">关于我</a>
+            <a href="#projects" class="block py-2 text-white hover:text-purple-300">作品</a>
+            <a href="#facts" class="block py-2 text-white hover:text-purple-300">宇宙真相</a>
+            <a href="#contact" class="block py-2 text-white hover:text-purple-300">联系我</a>
+        </div>
+        
+        <div class="relative z-20 container mx-auto px-6 h-5/6 flex flex-col justify-center items-center text-center">
+            <div id="particles-js" class="absolute inset-0 z-0"></div>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 dynamic-text">查斯 | 干就完了</h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl fade-in">代码与马拉松的双修达人，正在编写人生的长跑循环中...</p>
+            <div class="flex space-x-4 fade-in" style="animation-delay: 0.3s;">
+                <a href="#projects" class="gradient-bg text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition btn-3d">我的作品</a>
+                <a href="#contact" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-gray-900 transition btn-3d">联系我</a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <a href="#about" class="text-white text-4xl"><i class="fas fa-angle-down"></i></a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">关于我</h2>
+                <div class="w-24 h-1 gradient-bg mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="https://picsum.photos/600/600?random=2" alt="About Me" class="rounded-lg shadow-xl mx-auto">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-6">社交媒体</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-comments text-purple-600 text-xl mr-3"></i>
+                            <span>公众号/视频号：Childe</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-rocket text-purple-600 text-xl mr-3"></i>
+                            <span>即刻：加快速度</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-weixin text-purple-600 text-xl mr-3"></i>
+                            <span>微信：科技委</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">
+                        作为一位代码和马拉松的双料狂热爱好者，我的生活在键盘敲击声和跑鞋踏地声中不断前进。
+                        当我不在编写下一个革命性应用时，你可能会在马拉松赛道上看到我挑战自我的身影。
+                    </p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 icon-hover">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 icon-hover">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 icon-hover">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">我的作品</h2>
+                <div class="w-24 h-1 gradient-bg mx-auto"></div>
+                <p class="text-gray-600 dark:text-gray-400 mt-4">探索我参与过的一些项目</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 - Flip Card -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                            <img src="https://picsum.photos/600/400?random=3" alt="Project 1" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">贝多芬科吉尔净水器</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">创新净水技术，为生活带来纯净水源</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-4">项目亮点</h3>
+                            <p class="mb-6">革命性的净水技术，采用先进过滤系统</p>
+                            <a href="https://www.nmgk.com/" class="bg-white text-purple-600 px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                            <img src="https://picsum.photos/600/400?random=4" alt="Project 2" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">节度使布线程序</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">AI图像增强工具，提升图片质量</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-4">项目亮点</h3>
+                            <p class="mb-6">AI驱动的图像增强技术，让像素焕发生机</p>
+                            <a href="https://www.pixelcut.ai/image-upscaler" class="bg-white text-purple-600 px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                            <img src="https://picsum.photos/600/400?random=5" alt="Project 3" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">查监控 cat 克里斯蒂娜</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">原创内容平台，展示创意作品</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-4">项目亮点</h3>
+                            <p class="mb-6">汇聚全球创意作品，让灵感无处不在</p>
+                            <a href="https://588ku.com/Originator/" class="bg-white text-purple-600 px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                            <img src="https://picsum.photos/600/400?random=6" alt="Project 4" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">泡打粉公开课</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">学生在线学习平台</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-4">项目亮点</h3>
+                            <p class="mb-6">知识爆炸的线上课堂，让学习如呼吸般自然</p>
+                            <a href="https://www.student.com/" class="bg-white text-purple-600 px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                            <img src="https://picsum.photos/600/400?random=7" alt="Project 5" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">玫红色插件内存卡</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">词源在线查询工具</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-4">项目亮点</h3>
+                            <p class="mb-6">词语起源的考古之旅，探索语言的奇妙世界</p>
+                            <a href="https://www.etymonline.com/" class="bg-white text-purple-600 px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                            <img src="https://picsum.photos/600/400?random=8" alt="Project 6" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">未公开项目</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">持续开发中，敬请期待</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-4">神秘项目</h3>
+                            <p class="mb-6">正在宇宙深处酝酿的颠覆性项目，敬请期待</p>
+                            <span class="bg-white text-purple-600 px-6 py-2 rounded-full font-medium opacity-50">即将推出</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facts Section -->
+    <section id="facts" class="py-20 bg-white dark:bg-gray-800 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 neon-text explode-on-hover">🚀 关于我的十大宇宙级真相</h2>
+                <div class="w-24 h-1 gradient-animate mx-auto"></div>
+                <p class="text-gray-600 dark:text-gray-400 mt-4 shake-element">⚠️ 使用前请检查心脏承受能力，本清单已投保夸张险</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Fact 1 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">🏃‍♂️</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">马拉松界的灭霸</h3>
+                            <p class="text-gray-600 dark:text-gray-400">曾因跑步速度过快导致主办方提前撤掉终点线，目前被全球 42.195 公里赛道联合通缉中</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 2 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.1s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">💻</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">代码永动机</h3>
+                            <p class="text-gray-600 dark:text-gray-400">连续编程 72 小时后被误认为成仙，现靠咖啡因和 Stack Overflow 续命，代谢产物是.git 文件夹</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 3 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.2s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">🌍</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">地球自转幕后推手</h3>
+                            <p class="text-gray-600 dark:text-gray-400">每天晨跑产生的动能占全球地壳运动的 37%，国际田联建议我交税时申报「行星发动机」职业</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 4 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.3s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">🐛</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">Debug 终结者</h3>
+                            <p class="text-gray-600 dark:text-gray-400">只需凝视屏幕 3 秒，bug 会因羞愧而自我修复，NASA 正研究我的脑电波替代超级计算机</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 5 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.4s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">⌨️</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">键盘炼金术师</h3>
+                            <p class="text-gray-600 dark:text-gray-400">能徒手把 Python 代码编译成拿铁咖啡，目前正在挑战将 Java 变成猫罐头</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 6 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.5s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">🦸</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">马拉松补给站噩梦</h3>
+                            <p class="text-gray-600 dark:text-gray-400">曾在水站喝光 3 吨运动饮料，导致后续选手改喝主办方的悔恨泪水完赛</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 7 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.6s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">📈</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">时间折叠大师</h3>
+                            <p class="text-gray-600 dark:text-gray-400">同时出现在全球 5 个马拉松赛场和 3 个编程马拉松现场，量子物理学家称我为「薛定谔的社畜」</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 8 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.7s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">🔗</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">人形 API 接口</h3>
+                            <p class="text-gray-600 dark:text-gray-400">皮下流淌着二进制血液，医院抽血时误触发了 Git push 命令，现被 GitHub 标注为危险品</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 9 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.8s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">🎧</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">耳机成精见证者</h3>
+                            <p class="text-gray-600 dark:text-gray-400">跑步歌单过于硬核导致 AirPods 进化出独立意识，目前正组团在 Spotify 开黑</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fact 10 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md scroll-reveal facts-card glow-border" style="transition-delay: 0.9s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl text-purple-600 mr-4 facts-emoji">🌌</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 explode-text">宇宙终极答案持有者</h3>
+                            <p class="text-gray-600 dark:text-gray-400">当 42 公里遇上 42 号错误代码时，我会在跑鞋和键盘的量子纠缠中揭开生命的意义——然后继续写 bug</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">联系我</h2>
+                <div class="w-24 h-1 bg-white mx-auto"></div>
+                <p class="text-gray-200 mt-4">有任何问题或合作机会，欢迎联系我</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                    <div class="bg-white bg-opacity-20 p-6 rounded-lg text-center">
+                        <i class="fas fa-envelope text-4xl text-white mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">邮箱</h3>
+                        <p class="text-gray-200">contact@childe.example.com</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 p-6 rounded-lg text-center">
+                        <i class="fab fa-weixin text-4xl text-white mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">微信</h3>
+                        <p class="text-gray-200">科技委</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 p-6 rounded-lg text-center">
+                        <i class="fas fa-map-marker-alt text-4xl text-white mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">位置</h3>
+                        <p class="text-gray-200">中国</p>
+                    </div>
+                </div>
+                
+                <form class="bg-white p-8 rounded-lg shadow-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                        <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 font-medium mb-2">消息</label>
+                        <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition w-full">发送消息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Childe</h2>
+                    <p class="text-gray-400 mt-2">查斯 | 干就完了</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-weixin text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-weibo text-xl"></i></a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">© 2023 Childe. 保留所有权利</p>
+                <div class="mt-4 md:mt-0 flex items-center">
+                    <div class="visitor-counter mr-6 flex items-center">
+                        <i class="fas fa-eye text-purple-500 mr-2"></i>
+                        <span class="text-gray-400">浏览量: <span id="visitor-count" class="text-white">1</span></span>
+                    </div>
+                    <a href="#" class="text-gray-400 hover:text-white mx-3 transition">隐私政策</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-3 transition">使用条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 粒子效果JS库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 滚动进度条
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+            const scrolled = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+            
+            // 显示或隐藏回到顶部按钮
+            const backToTopButton = document.getElementById('back-to-top');
+            if (scrollTop > 300) {
+                backToTopButton.style.transform = 'scale(1)';
+            } else {
+                backToTopButton.style.transform = 'scale(0)';
+            }
+        });
+        
+        // 回到顶部按钮点击事件
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 浏览量计数器
+        const visitorCount = document.getElementById('visitor-count');
+        
+        // 尝试从本地存储获取访问计数
+        let count = localStorage.getItem('visitorCount') || 0;
+        count = parseInt(count) + 1;
+        localStorage.setItem('visitorCount', count);
+        
+        // 动画显示计数器
+        let currentDisplayCount = 1;
+        const targetCount = count;
+        const countSpeed = 50; // 数字增加速度
+        
+        function updateCounter() {
+            if (currentDisplayCount < targetCount) {
+                currentDisplayCount++;
+                visitorCount.textContent = currentDisplayCount;
+                visitorCount.classList.add('count-increase');
+                
+                // 随机延迟
+                const delay = Math.floor(Math.random() * countSpeed) + 10;
+                setTimeout(updateCounter, delay);
+            } else {
+                visitorCount.textContent = targetCount;
+            }
+        }
+        
+        // 启动计数器动画
+        setTimeout(updateCounter, 1000);
+        
+        // Scroll reveal animation
+        const scrollElements = document.querySelectorAll('.scroll-reveal');
+        
+        const elementInView = (el, percentageScroll = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            
+            return (
+                elementTop <= 
+                ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('active');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 80)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize scroll animation on page load
+        handleScrollAnimation();
+        
+        // 宇宙真相卡片特效
+        document.querySelectorAll('.facts-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const randomColor = `rgb(${Math.floor(Math.random() * 100) + 100}, ${Math.floor(Math.random() * 50)}, ${Math.floor(Math.random() * 100) + 150})`;
+                card.querySelector('.facts-emoji').style.color = randomColor;
+            });
+        });
+        
+        // 粒子效果初始化
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 4,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // 为标题添加爆炸特效
+        document.querySelectorAll('.explode-text').forEach(text => {
+            text.addEventListener('mouseover', () => {
+                text.classList.add('explode-on-hover');
+                setTimeout(() => {
+                    text.classList.remove('explode-on-hover');
+                }, 500);
+            });
+        });
+        
+        // Background code animation for design reference
+        document.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition > 300) {
+                // Generate fake code patterns in the background when scrolling
+                const codeLines = [
+                    'while(running) { improveCode(); }',
+                    'for(let i=0; i<42; i++) { runMarathon(); }',
+                    'if(coffee.isEmpty()) { refill(); }',
+                    'function optimizeLife() { /* TODO */ }',
+                    'catch(error) { fixItLater(); }'
+                ];
+                
+                // This is just a visual effect hint in the console
+                console.log('Background code marathon: ' + codeLines[Math.floor(Math.random() * codeLines.length)]);
+            }
+        });
+        
+        // Dark mode toggle (simplified version)
+        const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark');
+        }
+    </script>
+</body>
+</html> 
